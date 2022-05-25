@@ -1,3 +1,36 @@
 \usepackage{fancyhdr}
+\usepackage{mathtools}
+\usepackage{blkarray}
 \pagestyle{fancy}
-\fancyhead[CO, CE]{Simon Zeng | 20769883}
+% \fancyhead[CO, CE]{Simon Zeng | 20769883}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\set}{\{}{\}}
+\DeclarePairedDelimiter{\p}{\left(}{\right)}
+\DeclarePairedDelimiter{\abs}{\vert}{\vert}
+
+\def\C{{\mathbb{C}}}
+\def\F{{\mathbb{F}}}
+\def\N{{\mathbb{N}}}
+\def\Q{{\mathbb{Q}}}
+\def\R{{\mathbb{R}}}
+\def\Z{{\mathbb{F}}}
+\def\l{\left}
+\def\r{\right}
+\def\rank{\text{rank}}
+\def\nullity{\text{nullity}}
+\def\min{\text{min}}
+\def\Proj{\text{Proj}}
+\def\Col{\text{Col}}
+\def\Span{\text{Span}}
+\def\Refl{\text{Refl}}
+\def\max{\text{max}}
+\def\sbjt{\text{subject to }}
+\def\dist{\text{dist}}
+\def\det{\text{det}}
+
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
