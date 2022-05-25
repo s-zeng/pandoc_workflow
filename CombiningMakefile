@@ -1,0 +1,59 @@
+SOURCE_DOCS := $(wildcard *.md)
+
+EXPORTED_DOCS=\
+ $(notes.pdf) \
+ # $(notes.html) \
+ # $(notes.docx) \
+ # $(notes.rtf) \
+ # $(notes.odf) \
+ # $(notes.epub) \
+ # $(notes.tex) \
+
+RM=rm
+
+PANDOC=pandoc
+
+PANDOC_OPTIONS=--standalone --from markdown+smart
+
+PANDOC_HTML_OPTIONS=--to html5
+# PANDOC_PDF_OPTIONS=-H https://simonzeng.com/pandoc_workflow/header.tex
+PANDOC_PDF_OPTIONS=-H ~/repos/pandoc_workflow/header.tex
+PANDOC_DOCX_OPTIONS=
+PANDOC_RTF_OPTIONS=
+PANDOC_ODT_OPTIONS=
+PANDOC_TEX_OPTIONS=
+PANDOC_EPUB_OPTIONS=--to epub3
+
+
+# Pattern-matching Rules
+
+notes.html: $(SOURCE_DOCS)
+	$(PANDOC) $(PANDOC_OPTIONS) $(PANDOC_HTML_OPTIONS) -s $(SOURCE_DOCS) -o $@
+
+notes.tex: $(SOURCE_DOCS)
+	$(PANDOC) $(PANDOC_OPTIONS) $(PANDOC_TEX_OPTIONS) -s $(SOURCE_DOCS) -o $@
+
+notes.pdf: $(SOURCE_DOCS)
+	$(PANDOC) $(PANDOC_OPTIONS) $(PANDOC_PDF_OPTIONS) -s $(SOURCE_DOCS) -o $@
+
+notes.docx: $(SOURCE_DOCS)
+	$(PANDOC) $(PANDOC_OPTIONS) $(PANDOC_DOCX_OPTIONS) -s $(SOURCE_DOCS) -o $@
+
+notes.rtf: $(SOURCE_DOCS)
+	$(PANDOC) $(PANDOC_OPTIONS) $(PANDOC_RTF_OPTIONS) -s $(SOURCE_DOCS) -o $@
+
+notes.odt: $(SOURCE_DOCS)
+	$(PANDOC) $(PANDOC_OPTIONS) $(PANDOC_ODT_OPTIONS) -s $(SOURCE_DOCS) -o $@
+
+notes.epub: $(SOURCE_DOCS)
+	$(PANDOC) $(PANDOC_OPTIONS) $(PANDOC_EPUB_OPTIONS) -s $(SOURCE_DOCS) -o $@
+       
+
+# Targets and dependencies
+
+.PHONY: all clean
+
+all : $(EXPORTED_DOCS)
+
+clean:
+	- $(RM) $(EXPORTED_DOCS)
